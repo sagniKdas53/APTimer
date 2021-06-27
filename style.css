@@ -1,0 +1,16 @@
+html body{
+    background-color: rgb(255, 225, 129);
+}
+
+li {
+    display: inline-block;
+    font-size: 1.0em;
+    list-style-type: none;
+    padding: 1.5em;
+    text-transform: uppercase;
+  }
+  
+  li span {
+    display: block;
+    font-size: 3.5rem;
+  }

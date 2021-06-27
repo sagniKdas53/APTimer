@@ -93,14 +93,14 @@ function getTimeRemaining(endtime) {
 }
 
 function initClock(endtime) {
-    const clock = document.getElementById('clockdiv');
-    const daysSpan = clock.querySelector('.days');
-    const hoursSpan = clock.querySelector('.hours');
-    const minutesSpan = clock.querySelector('.minutes');
-    const secondsSpan = clock.querySelector('.seconds');
+    //const clock = document.getElementById('clockdiv');
+    const daysSpan = document.getElementById('days');
+    const hoursSpan =document.getElementById('hours');
+    const minutesSpan = document.getElementById('minutes');
+    const secondsSpan = document.getElementById('seconds');
     const t = getTimeRemaining(endtime);
 
-    daysSpan.innerHTML = t.days;
+    daysSpan.innerHTML = '0'+t.days;
     hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
     minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
@@ -109,11 +109,11 @@ function initClock(endtime) {
 function updateClock() {
     accumulator += 1;
     //console.log(accumulator);
-    const clock = document.getElementById('clockdiv');
-    const daysSpan = clock.querySelector('.days');
-    const hoursSpan = clock.querySelector('.hours');
-    const minutesSpan = clock.querySelector('.minutes');
-    const secondsSpan = clock.querySelector('.seconds');
+    //const clock = document.getElementById('clockdiv');
+    const daysSpan = document.getElementById('days');
+    const hoursSpan =document.getElementById('hours');
+    const minutesSpan = document.getElementById('minutes');
+    const secondsSpan = document.getElementById('seconds');
     const t = getTimeRemaining(end);
 
     daysSpan.innerHTML = t.days;
@@ -131,11 +131,11 @@ function updateClock() {
         then we can show default values else load the new ones and upate the current one
         there is a log in savinng the cookies for example this: 1624391420967-1624391362958 = 58009
         insted of 60000
-        */
+        (a comment end was here)*/
     }
     if (t.total <= 0) {
         clearInterval(timeinterval);
-        daysSpan.innerHTML = '0';
+        daysSpan.innerHTML = '00';
         hoursSpan.innerHTML = '00';
         minutesSpan.innerHTML = '00';
         secondsSpan.innerHTML = '00';
