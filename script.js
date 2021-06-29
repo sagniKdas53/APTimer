@@ -31,6 +31,20 @@ function loadData() {
             document.getElementById("perEn").checked = false;
             document.getElementById("perUnit").value = "";
         }
+        if (Cookies.get("CurrState") == 'true') {
+            let calc_value = 0;
+            let instant =Date.now();
+            if(instant>expiresAt){
+                calc_value = max;
+            }else{
+                calc_value = (expiresAt - instant)/(perUnit*60000);
+            }
+            document.getElementById("SavedEn").checked = true;
+            document.getElementById("current").value = calc_value;
+        } else {
+            document.getElementById("SavedEn").checked = false;
+            document.getElementById("current").value = "";
+        }
     } catch (err) {
         savedAt = 0;
         expiresAt = 0;
@@ -51,6 +65,7 @@ function saveCookies() {
     Cookies.set("perUnit", perUnit, { expires: 30 });
     Cookies.set("saveMaxState", document.getElementById("MaxEn").checked, { expires: 30 });
     Cookies.set("savePerState", document.getElementById("perEn").checked, { expires: 30 });
+    Cookies.set("CurrState", document.getElementById("SavedEn").checked, { expires: 30 });
 }
 
 function getData() {
@@ -100,7 +115,7 @@ function initClock(endtime) {
     const secondsSpan = document.getElementById('seconds');
     const t = getTimeRemaining(endtime);
 
-    daysSpan.innerHTML = '0'+t.days;
+    daysSpan.innerHTML = ('0'+t.days).slice(-2);
     hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
     minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
@@ -116,7 +131,7 @@ function updateClock() {
     const secondsSpan = document.getElementById('seconds');
     const t = getTimeRemaining(end);
 
-    daysSpan.innerHTML = t.days;
+    daysSpan.innerHTML = ('0'+t.days).slice(-2);
     hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
     minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
