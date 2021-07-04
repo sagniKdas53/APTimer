@@ -39,8 +39,7 @@ function loadData() {
                 current = max;
             }else{
                 //calc ap now
-                //console.log(((expiresAt - instant)/(perUnit*600000)));
-                current = current+Math.round(((expiresAt - instant)/(perUnit*600000)));
+                current = current+Math.floor(((expiresAt - instant)/(perUnit*600000)));
             }
             document.getElementById("SavedEn").checked = true;
             document.getElementById("current").value = current;
