@@ -32,15 +32,18 @@ function loadData() {
             document.getElementById("perUnit").value = "";
         }
         if (Cookies.get("CurrState") == 'true') {
-            let calc_value = 0;
             let instant =Date.now();
+            //console.log(new Date(instant),new Date(expiresAt));
+            //if time has alredy passed
             if(instant>expiresAt){
-                calc_value = max;
+                current = max;
             }else{
-                calc_value = (expiresAt - instant)/(perUnit*60000);
+                //calc ap now
+                current = current+Math.floor(((expiresAt - instant)/(perUnit*600000)));
             }
             document.getElementById("SavedEn").checked = true;
-            document.getElementById("current").value = calc_value;
+            document.getElementById("current").value = current;
+            getData();
         } else {
             document.getElementById("SavedEn").checked = false;
             document.getElementById("current").value = "";
@@ -54,6 +57,7 @@ function loadData() {
         document.getElementById("MaxEn").checked = false;
         document.getElementById("perEn").checked = false;
     }
+    //saveCookies();
 }
 
 
